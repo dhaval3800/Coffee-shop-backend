@@ -19,9 +19,7 @@ const userSchema = Joi.object({
 
 const updateUserSchema = Joi.object({
     name: Joi.string(),
-    email: Joi.string().email(),
     password: Joi.string().min(7),
-    avatar: Joi.binary()
 });
 
 const coffeeShopSchema = Joi.object({

@@ -1,4 +1,5 @@
 const errorHandler = (err, req, res, next) => {
+    console.log("🚀 ~ file: errorHandler.js:2 ~ errorHandler ~ err:", err)
     let statusCode = err.statusCode || 500;
     let message = err.message || 'Internal Server Error';
 
@@ -12,6 +13,10 @@ const errorHandler = (err, req, res, next) => {
     } else if (err.name === 'CastError') {
         statusCode = 404;
         message = 'Resource not found';
+    }
+    else if (err.message === 'invalid credential') {
+        statusCode = 401;
+        message = 'Invalid credential';
     }
 
     res.status(err.status || statusCode).json({ error: message });
